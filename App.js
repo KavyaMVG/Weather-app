@@ -8,7 +8,6 @@ export default function App() {
   const [refreshing, setRefreshing] = useState(false);
   const [weatherData, setWeatherData] = useState(null);
 
-  const API_KEY = "e8f5a0c5982442f95c99d0988c20590f";
   const city = "Bangalore";
   const state = "KA";
   const countryCode = 3166 - 1;
@@ -22,7 +21,7 @@ export default function App() {
     const { coords } = await Location.getCurrentPositionAsync({
       enableHighAccuracy: true,
     });
-    const uri = `https://api.openweathermap.org/data/3.0/onecall?lat=${coords.latitude}&lon=${coords.longitude}&appid=${API_KEY}`;
+    const uri = `https://api.openweathermap.org/data/3.0/onecall?lat=${coords.latitude}&lon=${coords.longitude}&appid=${process.env.API_KEY}`;
     try {
       const response = await axios.get(uri);
       const data = await response.json();
